@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru" data-page="home">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Портфолио — Ваше Имя</title>
+  <meta name="description" content="Одностраничный сайт-портфолио с анимациями, переключателем темы и параллакс-фоном." />
+  <link rel="preload" href="assets/fon.png" as="image" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Фон -->
+  <div id="bg" aria-hidden="true">
+    <canvas id="stars"></canvas>
+    <img id="bg-globe" src="assets/fon.png" alt="" />
+    <div id="glow"></div>
+  </div>
+  <!-- --- -->
+
+
+  <!-- Голова -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html" aria-label="На главную">Portfolio</a>
+      <nav class="nav">
+        <a href="#home">Главная</a>
+        <a href="#works">Работы</a>
+        <a href="#about">О себе</a>
+        <a href="#contact">Контакты</a>
+        <span class="divider"></span>
+        <a href="about.html">Стр. О себе</a>
+        <a href="works.html">Стр. Работы</a>
+        <a href="contact.html">Стр. Контакты</a>
+      </nav>
+      <button id="theme-toggle" class="icon-btn" aria-label="Переключить тему" title="Переключить тему">🌓</button>
+    </div>
+  </header>
+  <!-- ----- -->
+
+
+
+  <main>
+
+    <!-- Обо мне -->
+    <section id="home" class="hero section">
+      <div class="container">
+        <h1 class="hero__title reveal-up">Привет! Я <span class="accent">Вадим Бахтуев</span></h1>
+        <p class="hero__subtitle reveal-up delay-1">
+          Разработчик программного обеспечения, создаю баззы данных и приложенния для их сопровождения. Ниже — мои проекты,
+          а ещё ниже — немного обо мне и как связаться.
+        </p>
+        <div class="hero__cta reveal-up delay-2">
+          <a class="btn" href="#works">Смотреть проекты</a>
+          <a class="btn btn--ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+    </section>
+    <!-- ----- -->
+
+    <!-- Работы -->
+    <section id="works" class="section">
+      <div class="container">
+        <h2 class="section__title reveal-up">Галерея работ</h2>
+        <div class="grid works-grid">        
+          <article class="card reveal-up delay-1">
+            <div class="card__thumb" aria-hidden="true">
+              <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)"/>
+                    <stop offset="100%" stop-color="var(--muted)"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" fill="url(#g1)"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3>АИС</h3>
+              <p>Ведение кадрового учёта для администрации города</p>
+              <div class="card__actions">
+                <a class="link" href="works.html#proj-aero">Подробнее</a>
+                <a>→</a>
+                <a class="link" href="https://github.com/SebBachV/AUTOMATION-OF-ACCOUNTING-FOR-CONTRACTS-FOR-THE-RIGHT-TO-PLACE-NON-STATIONARY-RETAIL-FACILITIES" onclick="return false;">Репозиторий</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal-up delay-2">
+            <div class="card__thumb" aria-hidden="true">
+              <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0%" stop-color="var(--muted)"/>
+                    <stop offset="100%" stop-color="var(--accent)"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" fill="url(#g2)"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3>WEB портфолио</h3>
+              <p>Сайт‑портфолио с различными плюшками</p>
+              <div class="card__actions">
+                <a class="link" href="works.html#proj-nova">Подробнее</a>
+                <a>→</a>
+                <a class="link" href="#" onclick="return false;">Репозиторий</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal-up delay-3">
+            <div class="card__thumb" aria-hidden="true">
+              <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)"/>
+                    <stop offset="100%" stop-color="var(--muted)"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="240" fill="url(#g3)"/>
+              </svg>
+            </div>
+            <div class="card__body">
+              <h3>Скоро будет</h3>
+              <p>Здесь будут ещё работы, честно</p>
+              
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ------ -->
+
+
+    <!-- Обо мне -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section__title reveal-up">О себе</h2>
+        <div class="about-grid">
+          <div class="about__text reveal-up delay-1">
+            <p>Претпочитаю псевдоним Bach, аккуратный интерфейс, создавать БД и автоматизировать процессы. Пишу на <strong>С++</strong>, <strong>С#</strong>, <strong>1С</strong>.</p>
+            <p>В работе опираюсь на систиматизированность, простату и доступность. Ниже список моих инструментов.</p>
+            <ul class="tags">
+              <li>VS</li><li>VS Code</li><li>Git</li><li>MySQL</li>
+            </ul>
+          </div>
+          <div class="about__card reveal-up delay-2">
+            <h3>Достижения</h3>
+            <ul>
+              <li>3 завершённых проектов</li>
+              <li>Оптимизация введения кадрового учёта</li>
+              <li>Участие в различных форумах</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------- -->
+
+    <!-- Связь -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section__title reveal-up">Контакты</h2>
+        <div class="contact-grid">
+          <form class="contact-form reveal-up delay-1" onsubmit="alert('Спасибо! Сообщение отправлено (демо).'); return false;">
+            <label>
+              <span>Имя</span>
+              <input type="text" required placeholder="Ваше имя" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" required placeholder="name@example.com" />
+            </label>
+            <label class="full">
+              <span>Сообщение</span>
+              <textarea required rows="4" placeholder="Коротко опишите задачу"></textarea>
+            </label>
+            <button class="btn" type="submit">Отправить</button>
+          </form>
+          <div class="contact-aside reveal-up delay-2">
+            <p>Предпочитаемый способ связи — почта.</p>
+            <p><a class="link" href="mailto:hello@example.com">hello@example.com</a></p>
+            <p><a class="link" href="https://github.com/" target="_blank" rel="noreferrer">Мой GitHub</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- ------- -->
+
+  <!-- Подвал -->
+  <button id="to-top" class="to-top" aria-label="К началу">↑</button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Вадим Бахтуев</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

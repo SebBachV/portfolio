@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru" data-page="works">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Работы — Портфолио</title>
+  <link rel="preload" href="assets/fon.png" as="image" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="bg" aria-hidden="true">
+    <canvas id="stars"></canvas>
+    <img id="bg-globe" src="assets/fon.png" alt="" />
+    <div id="glow"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">Portfolio</a>
+      <nav class="nav">
+        <a href="index.html#home">Главная</a>
+        <a href="works.html">Работы</a>
+        <a href="about.html">О себе</a>
+        <a href="contact.html">Контакты</a>
+      </nav>
+      <button id="theme-toggle" class="icon-btn" aria-label="Переключить тему">🌓</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      
+<h1 class="section__title">Мои работы</h1>
+<p>Ниже — примеры учебных проектов. Ссылки на репозитории можно заменить на ваши.</p>
+<div class="grid works-grid">
+  <article id="proj-aero" class="card">
+    <div class="card__thumb" aria-hidden="true">
+      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
+    </div>
+    <div class="card__body">
+      <h3>Лендинг «Aero»</h3>
+      <p>Адаптивная вёрстка, плавная прокрутка, оптимизация картинок.</p>
+      <div class="card__actions">
+        <a class="link" href="#" onclick="return false;">Репозиторий</a>
+      </div>
+    </div>
+  </article>
+  <article id="proj-nova" class="card">
+    <div class="card__thumb" aria-hidden="true">
+      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
+    </div>
+    <div class="card__body">
+      <h3>Портфолио «Nova»</h3>
+      <p>Переключение темы, микро‑анимации, IntersectionObserver.</p>
+      <div class="card__actions">
+        <a class="link" href="#" onclick="return false;">Репозиторий</a>
+      </div>
+    </div>
+  </article>
+  <article id="proj-shop" class="card">
+    <div class="card__thumb" aria-hidden="true">
+      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
+    </div>
+    <div class="card__body">
+      <h3>Витрина «Shop»</h3>
+      <p>Каталог, фильтры, сохранение состояния в URL‑параметрах.</p>
+      <div class="card__actions">
+        <a class="link" href="#" onclick="return false;">Репозиторий</a>
+      </div>
+    </div>
+  </article>
+</div>
+
+    </div>
+  </main>
+
+  <button id="to-top" class="to-top" aria-label="К началу">↑</button>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Ваше Имя.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
