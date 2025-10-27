@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Работы — Портфолио</title>
-  <link rel="preload" href="assets/fon.png" as="image" />
+  <link rel="preload" href="img/fon.png" as="image" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -27,58 +27,56 @@
     </div>
   </header>
 
-  <main class="section">
-    <div class="container">
-      
-<h1 class="section__title">Мои работы</h1>
-<p>Ниже — примеры учебных проектов. Ссылки на репозитории можно заменить на ваши.</p>
-<div class="grid works-grid">
-  <article id="proj-aero" class="card">
-    <div class="card__thumb" aria-hidden="true">
-      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
+<main class="section">
+  <div class="container">      
+    <h1 class="section__title">Мои работы</h1>
+    <p>Ниже — примеры учебных проектов.</p>
+    <div class="grid works-grid">
+      <article id="proj-aero" class="card">
+        <div class="card__thumb" aria-hidden="true">
+            <img src="img/ais.png" alt="Скриншот АИС: учёт договоров, список и таблица" loading="lazy">
+          </div>
+        <div class="card__body">
+          <h3>АИС</h3>
+          <p>Ведение кадрового учёта для администрации города</p>
+          <div class="card__actions">
+            <a class="link" href="#">Репозиторий</a>
+          </div>
+        </div>
+      </article>
+      <article id="proj-nova" class="card">
+        <div class="card__thumb" aria-hidden="true">
+          <img src="img/portfolioIMG.png" alt="Скриншот сайта-портфолио" loading="lazy">
+        </div>
+        <div class="card__body">
+          <h3>WEB портфолио</h3>
+          <p>Сайт‑портфолио с различными плюшками</p>
+          <div class="card__actions">
+            <a class="link" href="#">Репозиторий</a>
+          </div>
+        </div>
+      </article>
+      <article id="proj-shop" class="card">
+        <div class="card__thumb" aria-hidden="true">
+          <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
+        </div>
+        <div class="card__body">
+          <h3>Скоро будет</h3>
+          <p>Здесь будут ещё работы, честно</p>
+          <div class="card__actions">
+            <a class="link" href="#">Репозиторий</a>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="card__body">
-      <h3>Лендинг «Aero»</h3>
-      <p>Адаптивная вёрстка, плавная прокрутка, оптимизация картинок.</p>
-      <div class="card__actions">
-        <a class="link" href="#" onclick="return false;">Репозиторий</a>
-      </div>
-    </div>
-  </article>
-  <article id="proj-nova" class="card">
-    <div class="card__thumb" aria-hidden="true">
-      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
-    </div>
-    <div class="card__body">
-      <h3>Портфолио «Nova»</h3>
-      <p>Переключение темы, микро‑анимации, IntersectionObserver.</p>
-      <div class="card__actions">
-        <a class="link" href="#" onclick="return false;">Репозиторий</a>
-      </div>
-    </div>
-  </article>
-  <article id="proj-shop" class="card">
-    <div class="card__thumb" aria-hidden="true">
-      <svg viewBox="0 0 400 240"><rect width="400" height="240" fill="var(--muted)"/></svg>
-    </div>
-    <div class="card__body">
-      <h3>Витрина «Shop»</h3>
-      <p>Каталог, фильтры, сохранение состояния в URL‑параметрах.</p>
-      <div class="card__actions">
-        <a class="link" href="#" onclick="return false;">Репозиторий</a>
-      </div>
-    </div>
-  </article>
-</div>
-
-    </div>
-  </main>
+  </div>
+</main>
 
   <button id="to-top" class="to-top" aria-label="К началу">↑</button>
 
   <footer class="site-footer">
     <div class="container">
-      <p>© <span id="year"></span> Ваше Имя.</p>
+      <p>© <span id="year"></span> Вадим Бахтуев.</p>
     </div>
   </footer>
 
