@@ -34,8 +34,11 @@
 }
 
 * { box-sizing: border-box; }
+
 html, body { height: 100%; }
+
 html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
@@ -391,3 +394,154 @@ label.full {
 @keyframes reveal {
   to { opacity: 1; transform: translateY(0); }
 }
+
+/*  Обомне  */
+.about-hero__grid { 
+  display:grid; 
+  gap:2rem; 
+  grid-template-columns: 1.3fr .7fr; 
+  align-items:center; 
+}
+
+@media (max-width: 900px){ .about-hero__grid { grid-template-columns: 1fr; } }
+
+.about-hero__cta { 
+  display:flex; 
+  gap:.75rem; 
+  margin-top:1rem; 
+}
+
+.about-hero__photo { 
+  display:grid; 
+  place-items:center; 
+}
+
+.avatar {
+  width: 260px; aspect-ratio:1; 
+  border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 45%, transparent), transparent 60%), 
+              linear-gradient(160deg, color-mix(in srgb, var(--accent) 25%, var(--card)), var(--card));
+  border: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent), var(--shadow);
+}
+
+/* Диз / Раз */
+.dd-split { 
+  display:grid; gap:1.2rem; 
+  grid-template-columns:1fr 1fr; 
+}
+@media (max-width: 900px){ .dd-split { grid-template-columns:1fr; } }
+
+.dd-card {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: var(--radius); 
+  padding:1.2rem; 
+  box-shadow: var(--shadow);
+}
+
+/* Навыки */
+.skills { display:grid; gap:1rem; }
+.skill__top{ display:flex; justify-content:space-between; font-weight:600; margin-bottom:.35rem; }
+
+.skill__bar{
+  --val: 0%;
+  height: 10px; border-radius:999px; overflow:hidden;
+  background: color-mix(in srgb, var(--text) 10%, transparent);
+  position: relative;
+}
+
+.skill__bar::after{
+  content:""; position:absolute; inset:0;
+  width:var(--val);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 60%, transparent), var(--accent));
+  border-radius:999px;
+  transition: width 1s ease;
+}
+
+/* Образование */
+.timeline { 
+  list-style:none; 
+  padding:0; 
+  margin:0; 
+  position:relative; 
+}
+
+.timeline::before{
+  content:""; 
+  position:absolute; 
+  left:10px; 
+  top:0; 
+  bottom:0; 
+  width:2px;
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+}
+
+.timeline__item{ 
+  position:relative; 
+  padding-left:2.5rem; 
+  margin: 0 0 1.2rem; 
+}
+
+.timeline__point{
+  position:absolute; 
+  left:2px; 
+  top:.2rem; 
+  width:16px; 
+  height:16px; 
+  border-radius:50%;
+  background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.timeline__body h3{ margin:.1rem 0 .2rem; }
+.timeline__body time{ opacity:.75; font-size:.95rem; display:block; margin-bottom:.35rem; }
+
+/* Интрументы */
+.toolstack { 
+  list-style:none; 
+  padding:0; display:flex; 
+  gap:.6rem; flex-wrap:wrap; }
+.toolstack li { 
+  padding:.35rem .6rem; 
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); 
+  border-radius:999px; 
+  background: color-mix(in srgb, var(--accent) 14%, transparent); 
+}
+
+/* Facts */
+.facts{ 
+  display:grid; 
+  gap:1rem; 
+  grid-template-columns: repeat(3,1fr); 
+  text-align:center; 
+}
+
+@media (max-width:800px){ .facts{ grid-template-columns:1fr; } }
+
+.fact{ 
+  background: var(--card); 
+  padding:1.2rem; 
+  border-radius: var(--radius); 
+  border:1px solid color-mix(in srgb, var(--text) 8%, transparent); 
+  box-shadow: var(--shadow); 
+}
+
+.fact__num{ 
+  font-size: clamp(2rem, 6vw, 3rem); 
+  font-weight:800; color: var(--accent); 
+}
+
+.fact__label{ opacity:.85; }
+
+/* Связь */
+.cta-box{
+  display:grid; 
+  gap:.5rem; 
+  place-items:start;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, var(--card)), var(--card));
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: var(--radius); 
+  padding:1.2rem; 
+  box-shadow: var(--shadow);
+}
+

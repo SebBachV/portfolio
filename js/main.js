@@ -1,6 +1,6 @@
-// ==============================
+
 // Переключение темы (light/dark)
-// ==============================
+
 (function theme() {
   const btn = document.getElementById('theme-toggle');
   const root = document.documentElement;
@@ -16,9 +16,9 @@
   });
 })();
 
-// ==============================
+
 // Кнопка «наверх»
-// ==============================
+
 (function toTop() {
   const btn = document.getElementById('to-top');
   const onScroll = () => {
@@ -30,14 +30,14 @@
   btn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
 
-// ==============================
+
 // Актуальный год в футере
-// ==============================
+
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// ==============================
+
 /* Плавное появление блоков на прокрутке */
-// ==============================
+
 (function revealOnScroll(){
   const els = document.querySelectorAll('.reveal-up');
   const io = new IntersectionObserver((entries) => {
@@ -46,9 +46,9 @@ document.getElementById('year').textContent = new Date().getFullYear();
   els.forEach(el => io.observe(el));
 })();
 
-// ========================================
+
 // Фон: звёзды, свечение и параллакс от мыши
-// ========================================
+
 (function background(){
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
@@ -99,7 +99,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
     requestAnimationFrame(draw);
   }
 
-  // Параллакс от мыши / тача
+  // Параллакс от мыши 
   function onPointer(e) {
     const x = ('touches' in e) ? e.touches[0].clientX : e.clientX;
     const y = ('touches' in e) ? e.touches[0].clientY : e.clientY;
@@ -112,4 +112,40 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
   window.addEventListener('mousemove', onPointer, { passive: true });
   window.addEventListener('touchmove', onPointer, { passive: true });
+})();
+
+// About page: анимация прогресс-баров и счётчиков
+
+(function aboutEnhancements(){
+  const bars = document.querySelectorAll('.skill__bar');
+  const nums = document.querySelectorAll('.fact__num');
+  if (!bars.length && !nums.length) return;
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (!e.isIntersecting) return;
+      const bar = e.target;
+      const val = (bar.getAttribute('data-value') || '0') + '%';
+      bar.style.setProperty('--val', val);
+      io.unobserve(bar);
+    });
+  }, { threshold: 0.6 });
+  bars.forEach(b => io.observe(b));
+
+  const io2 = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = Number(el.getAttribute('data-count') || '0');
+      let cur = 0;
+      const step = Math.max(1, Math.round(target / 40));
+      const t = setInterval(()=>{
+        cur += step;
+        if (cur >= target){ cur = target; clearInterval(t); }
+        el.textContent = cur;
+      }, 30);
+      io2.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  nums.forEach(n => io2.observe(n));
 })();
