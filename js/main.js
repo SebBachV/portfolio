@@ -49,7 +49,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // Фон: звёзды, свечение и параллакс от мыши
 
-(function background(){
+/*(function background(){
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
   const globe = document.getElementById('bg-globe');
@@ -112,6 +112,127 @@ document.getElementById('year').textContent = new Date().getFullYear();
   }
   window.addEventListener('mousemove', onPointer, { passive: true });
   window.addEventListener('touchmove', onPointer, { passive: true });
+})();*/
+
+
+(() => {
+  const canvas = document.getElementById('stars');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d', { alpha: true });
+
+  // Mouse target and eased offset for smooth parallax
+  let target = { x: 0, y: 0 };
+  let offset = { x: 0, y: 0 };
+
+  // DPR-aware sizing
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let vw = 0, vh = 0;
+
+  // Star field
+  let stars = [];
+  const AREA_DENSITY = 11000; // чем меньше число — тем больше звёзд
+  const PARALLAX = 18;        // сила параллакса в px при z=1
+
+  function resize() {
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.ceil(vw * dpr);
+    canvas.height = Math.ceil(vh * dpr);
+    canvas.style.width = vw + 'px';
+    canvas.style.height = vh + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Пересоздаём звёзды под текущую площадь
+    const desired = Math.round((vw * vh) / AREA_DENSITY);
+    stars = new Array(desired).fill(0).map(() => ({
+      // координаты в относительных долях, чтобы легко сдвигать параллакс
+      u: Math.random(),
+      v: Math.random(),
+      r: Math.random() * 1.3 + 0.3,  // базовый радиус (px)
+      z: Math.random() * 0.9 + 0.1,  // глубина 0..1 (влияет на параллакс и мерцание)
+      tw: Math.random() * Math.PI * 2 // фаза мерцания
+    }));
+  }
+
+  // Получаем контрастный цвет из темы (fallback — почти белый)
+  function getStarFill() {
+    const root = getComputedStyle(document.documentElement);
+    const text = root.getPropertyValue('--text')?.trim() || '#e6f0ed';
+    // Чуть смягчим яркость
+    return text;
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('mousemove', (e) => {
+    // нормализуем относительно центра экрана (-1..1)
+    const nx = (e.clientX / vw) * 2 - 1;
+    const ny = (e.clientY / vh) * 2 - 1;
+    target.x = nx;
+    target.y = ny;
+  }, { passive: true });
+
+  // Поддержка тача: берём крайнее касание
+  window.addEventListener('touchmove', (e) => {
+    const t = e.touches[0];
+    if (!t) return;
+    const nx = (t.clientX / vw) * 2 - 1;
+    const ny = (t.clientY / vh) * 2 - 1;
+    target.x = nx;
+    target.y = ny;
+  }, { passive: true });
+
+  let last = 0;
+  function tick(ts) {
+    const dt = Math.min(32, ts - last || 16);
+    last = ts;
+
+    // Плавно приближаем offset к target
+    const ease = 0.08;
+    offset.x += (target.x - offset.x) * ease;
+    offset.y += (target.y - offset.y) * ease;
+
+    // Очистка
+    ctx.clearRect(0, 0, vw, vh);
+
+    // Цвет звёзд
+    const fill = getStarFill();
+    ctx.fillStyle = fill;
+
+    // Рисуем звёзды
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+
+      // Параллакс: дальние (z ближе к 0) смещаются слабее
+      const px = s.u * vw + offset.x * PARALLAX * s.z;
+      const py = s.v * vh + offset.y * PARALLAX * s.z;
+
+      // Лёгкое мерцание
+      const twinkle = 0.55 + 0.45 * Math.sin(ts * 0.0015 * (0.6 + s.z) + s.tw);
+      const r = s.r * twinkle;
+
+      // Если вышли за пределы из-за смещения — «зациклим» координату
+      const x = ((px % vw) + vw) % vw;
+      const y = ((py % vh) + vh) % vh;
+
+      // Небольшие «мягкие» точки (кружочки)
+      ctx.globalAlpha = 0.7 * (0.6 + 0.4 * s.z) * (0.85 + 0.15 * twinkle);
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    requestAnimationFrame(tick);
+  }
+
+  // Инициализация
+  resize();
+  requestAnimationFrame(tick);
+
+  // Обновляем цвет при смене темы (если меняется CSS-переменная --text)
+  const obs = new MutationObserver(resize);
+  obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 })();
 
 // About page: анимация прогресс-баров и счётчиков
